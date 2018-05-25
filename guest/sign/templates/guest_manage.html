@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang = "zh-CN">
+<head>
+	{% load bootstrap3 %}
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
+
+	<title> Guest Manage</title>
+</head>
+
+
+
+<body role = "document">
+	<!--导航栏-->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+
+			
+			<div class="navbar-header">
+				<a class="navbar-brand" href="／event_manage/">Guest Manage System</a>
+			</div>
+
+
+			<div id="navbar" class="collapse navbar-collapse">
+
+				<ul class="nav navbar-nav">
+					<li ><a href="/event_manage/">发布会</a></li>
+					<li class="active"><a href="#">嘉宾</a></li>
+				</ul>
+
+
+				<ul class="nav navbar-nav navbar-right">
+					<li ><a href="#">{{user}}</a></li>
+					<li><a href="/logout/">退出</a></li>
+				</ul>
+
+
+
+			</div>
+
+		</div>
+
+	</nav>
+
+	<!--嘉宾列表-->
+	<div class="row" style="padding-top: 80px">
+		<div class="col-md-6">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>id</th><th>名称</th><th>手机</th><th>Email</th><th>签到</th><th>发布会</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					{% for guest in guests%}
+
+						<tr>
+							<td>{{guest.id}}</td>
+							<td>{{guest.realname}}</td>
+							<td>{{guest.phone}}</td>
+							<td>{{guest.email}}</td>
+							<td>{{guest.sign}}</td>
+							<td>{{guest.event}}</td>
+
+						</tr>
+					{% endfor %}
+
+
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</div>
+
+
+	<div class="pagination">
+		<span class="step-links">
+			
+			{% if guests.has_previous %}
+				<a href="?page={{guests.previous_page_number}}"> previous </a>
+			{% endif %}
+
+			<span class="current">
+				Page{{guests.number}} of {{guests.paginator.num_pages}}.
+			</span>
+
+			{% if guests.has_next %}
+
+				<a href="?page={{guests.next_page_number}}"> next </a>
+
+			{% endif %}
+
+		</span>
+
+
+	</div>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+

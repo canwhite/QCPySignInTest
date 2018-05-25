@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Djangle page</title>
+</head>
+<body>
+	<h1>发布会管理</h1>
+	<form method="post" action="/login_action/">
+		<input type="text" name="username" placeholder="username"><br>
+		<input type="password" name="password" placeholder="password"><br>
+		{{ error }}<br> 
+		<button id="btn" type="submit">登陆</button>
+		{% csrf_token %}
+	</form>
+</body>
+</html>
